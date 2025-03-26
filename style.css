@@ -3,11 +3,80 @@
     padding: 0;
     box-sizing: border-box;
 }
+body {
+    background: #f4f4f4;
+    color: #333;
+    transition: background 0.3s, color 0.3s;
+}
+.dark-mode {
+    background: #121212;
+    color: #fff;
+}
+.dark-mode #container{
+    background-color:#121212 ;
+}
+
+.dark-mode .criminal-card {
+    background: #1e1e1e;
+    box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+.dark-mode #modal-content {
+    background: #222;
+    color: #fff;
+}
+
+.dark-mode .fbi-link-btn,
+.dark-mode #load-more {
+    background-color: #ff5722;
+}
+
+.dark-mode .fbi-link-btn:hover,
+.dark-mode #load-more:hover {
+    background-color: #e64a19;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    /* /color: $secondary_color; */
+    height: 56px;
+    padding: 0 8px;
+    margin: 0;
+    /* font-family: $header_font; */
+    /* background-color: $primary_color; */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.logo {
+    position: fixed;
+    top: 0;
+    left: 0;
+    font-size: large;
+    margin: auto;
+    font-family: Arial, Helvetica, sans-serif
+}
+.nav_left {
+    display: flex;
+    justify-content: flex-end;
+    padding: auto;
+    width: 100%;
+    margin-right: 16px;
+    }
+ li {
+    list-style: none;
+    padding-left: 24px;}
 
 #container {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 0;
+    margin: 80px 0;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
