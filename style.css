@@ -1,0 +1,157 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#container {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#profiles{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 20px; /* Space between cards */
+    max-width: 1000px; /* Limit width */
+}
+
+
+.criminal-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 15px;
+    width: 280px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+}
+
+.criminal-card:hover {
+    transform: scale(1.05);
+}
+
+.criminal-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.criminal-card h3 {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #333;
+}
+
+.criminal-card p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+}
+
+
+.details-btn {
+    display: inline-block;
+    background: #d9534f;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: background 0.3s;
+}
+
+.details-btn:hover {
+    background: #c9302c;
+}
+button#load-prev{
+    float:left;
+    
+}
+button#load-more{
+    float:right;
+    
+}
+/* Modal Styles */
+#modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 60%;
+    max-width: 500px;
+    max-height: 80vh;
+    overflow: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+#modal-image {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin: 10px auto;
+}
+
+#modal-title {
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+#modal-crime, #modal-description {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media  (max-width: 768px) {
+    #profiles {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .criminal-card {
+        max-width: 100%;
+    }
+
+    #modal-content {
+        width: 95%;
+        max-height: 85vh;
+    }
+
+    #modal-image {
+        max-width: 200px;
+    }
+
+    .fbi-link-btn, #load-more {
+        font-size: 14px;
+        padding: 8px 12px;
+    }
+}
+
