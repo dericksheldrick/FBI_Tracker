@@ -87,7 +87,7 @@ li {
 #container {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
-    margin: 80px 0;
+    margin: 50px 0;
     padding: 20px;
     display: flex;
     flex-wrap: wrap;
@@ -274,6 +274,26 @@ button.view-more-btn,
 .submit-report-btn:hover {
     background-color: #218838;
 }
+/* TABLET RESPONSIVENESS */
+@media (max-width: 900px) {
+    #profiles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+       
+    }
+
+    .criminal-card {
+        width: 100%;
+    }
+
+    button#load-prev,
+    button#load-more {
+        width: 10%;
+    }
+    .nav{
+        position: absolute;
+    }
+}
 
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 600px) {
@@ -281,11 +301,23 @@ button.view-more-btn,
         width: 95%;
         max-height: 90vh;
     }
+    .modal-content img {
+        max-width: 200px;
+        height: auto;
+    }
+    .modal-content h2{
+        font-size: 14px;
+    }
+    #modal{
+        width: 100%;
+        max-width: 250px;
+    }
+
 
     .close-btn {
-        font-size: 20px;
-        top: 5px;
+        font-size: 12px;
         right: 10px;
+        margin-left: 100px;
     }
 
     .fbi-link-btn,
@@ -296,35 +328,45 @@ button.view-more-btn,
     }
 
     #profiles {
-        grid-template-columns: 1fr 1fr;
-    }
+            display: grid;
+            grid-template-columns: 1fr;
+            padding: 20px 15px;
+        }
 
     .criminal-card {
         width: 100%;
+        max-width: 300px;
     }
 
     /* Fix for button alignment */
     button#load-prev,
     button#load-more {
-        margin: 10px 0;
-        width: 100%;
+        /* margin: 10px 0; */
+        width: 80%;
         float: none;
+        align-items: center;
+    }
+    .nav{
+        height: 18px;
+        margin: 18px 8px;
+        position:absolute;
+    }
+     h2.Logo{
+        font-size: 18px;
+        margin: 0 12px;
+    }
+    #container{
+        margin: 30px 0;
+    }
+    #input{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 18px 0;
+            
     }
 }
 
-/* TABLET RESPONSIVENESS */
-@media (max-width: 900px) {
-    #profiles {
-        grid-template-columns: repeat(2, 1fr);
-    }
 
-    .criminal-card {
-        width: 100%;
-    }
-
-    button#load-prev,
-    button#load-more {
-        width: 100%;
-    }
-}
 
