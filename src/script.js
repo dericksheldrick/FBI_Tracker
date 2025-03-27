@@ -82,38 +82,89 @@ function displayCriminals(){
 
 // open modal
 function openModal(criminal){
-    document.getElementById("modal-title").textContent = criminal.title;
-    document.getElementById("modal-crime").textContent = `crime: ${criminal.subjects?.join(",") || "N/A"}`;
-    document.getElementById("modal-description").textContent = criminal.description || "No description is found";
-    document.getElementById("modal-image").src = criminal.images?.[0]?.original || 'https://placehold.co/150';
 
-    // const modal = document.getElementById("modal");
-    // const modalContent = document.getElementById("modal-content");
+    const modal = document.getElementById("modal");
+    const modalContent = modal.querySelector(".modal-content");
 
-    // let modalFooter = document.getElementById("modal-footer");
-    // // console.log(modalFooter)
-    // if (!modalFooter){
-    //     modalFooter = document.createElement("div");
-    //     modalFooter.id = "modal-footer";
-    //     modalContent.appendChild(modalFooter);
-    // }
-    // modalFooter.innerHTML = "";
+    if (!modalContent) {
+        console.error("❌ ERROR: Element with ID 'modal-content' not found.");
+        return;
+    }
 
-    // const fbiButton = document.createElement("a");
-    // fbiButton.href = criminal.url;
-    // fbiButton.target = "_blank";
-    // fbiButton.innerHTML = `<button class="fbi-link-btn">View on FBI Website</button>`;
+    modalContent.innerHTML =`
+        <span class= "close-btn">&times;</span>
+        <h2>${criminal.title}</h2>
+        <img src="${criminal.images?.[0]?.original || 'https://placehold.co/150'}" alt="${criminal.title}">
+        <p><strong>Crime:</strong> ${criminal.subjects.join(",")}</p>
+        <p>${criminal.description}</p>
+        <a href= "${criminal.url}" target= "_blank">
+            <button class="fbi-link-btn">View on FBI</button>
+        </a>
 
-    // modalFooter.appendChild(fbiButton);
+        <button id= "reportBtn" class="report-btn">Report This Criminal</button>
+
+        <!--hidding Report Form-->
+        <form id= "reportForm" class="hidden">
+            <h3>Report This Criminal</h3>
+            <label for = "reporterName">Your Name:</label>
+            <input type= "text" id= "reporterName" placehholder= "Enter your name" required>
+
+            <label for="reportLoction">Last Seen Location:</label>
+            <input type= "text" id="reportLocation" placeHolder= "Enter the last seen Location"required>
+
+            <label for="reportDetails">Additional Details:</label>
+            <textArea id="reportDetails" placeholder="Please provide more Informantion" required></textarea>
+            <button type="submit" class="submit-report-btn">Submit Report</button>
+
+        </form>
+    `;
 
     modal.style.display = "block"; 
+
+    //close button
+
+    const closeButton = modalContent.querySelector(".close-btn");
+
+    if (closeButton) {
+        closeButton.addEventListener("click", () => {
+            console.log("Close button clicked!");
+            modal.style.display = "none";
+        });
+    } else {
+        console.error("Close button still not found! Check modal-content structure.");
+    }
+
+    // Close modal when clicking outside
+    window.addEventListener("click", (event) => {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    // Report Button Click
+    document.getElementById("reportBtn").addEventListener("click", function(){
+        document.getElementById("reportForm").classList.toggle("hidden");
+    });
+
+    //report form submission
+    document.getElementById("reportForm").addEventListener("submit", function(event){
+        event.preventDefault();
+
+        const report = {
+            criminalName: criminal.title,
+            reporterName: document.getElementById("reporterName").value,
+            location: document.getElementById("reportLocation").value,
+            details: document.getElementById("reportDetails").value,
+            date: new Date().toISOString(),
+
+        };
+        console.log("Report Submitted:", report); // You can replace this with an API call to save the report
+
+        alert("your report has been submitted successfeully.");
+        document.getElementById("reportForm").reset();
+        document.getElementById("reportForm").classList.add("hidden");
+    });
 }
-
-//close modal
-document.querySelector(".close").addEventListener("click", function() {
-    modal.style.display = "none"; 
-});
-
 // event llistener for view more 
 profile.addEventListener("click", (event) =>{
     if (event.target.classList.contains("view-more-btn")){
@@ -175,10 +226,12 @@ crimeFilter.addEventListener("change", function(){
 // Check if dark mode was previously enabled
 if (localStorage.getItem("darkMode") === "enabled") {
     document.body.classList.add("dark-mode");
+    
 }
 
 darkModeToggle.addEventListener("click", () => {
     document.body.classList.toggle("dark-mode");
+    document.modal.classList.toggle("dark-mode");
 
     // Save the preference in local storage
     if (document.body.classList.contains("dark-mode")) {

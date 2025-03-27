@@ -1,24 +1,34 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     background: #f4f4f4;
     color: #333;
     transition: background 0.3s, color 0.3s;
 }
+
 .dark-mode {
     background: #121212;
     color: #fff;
 }
-.dark-mode #container{
-    background-color:#121212 ;
+
+.dark-mode #container {
+    background-color: #121212;
 }
 
 .dark-mode .criminal-card {
     background: #1e1e1e;
     box-shadow: 0px 4px 6px rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+.dark-mode #modal {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    border: 1px solid #444;
 }
 
 .dark-mode #modal-content {
@@ -27,7 +37,8 @@ body {
 }
 
 .dark-mode .fbi-link-btn,
-.dark-mode #load-more {
+.dark-mode #load-more,
+.dark-mode #load-prev {
     background-color: #ff5722;
 }
 
@@ -46,32 +57,32 @@ body {
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    /* /color: $secondary_color; */
     height: 56px;
     padding: 0 8px;
     margin: 0;
-    /* font-family: $header_font; */
-    /* background-color: $primary_color; */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 .logo {
     position: fixed;
     top: 0;
     left: 0;
     font-size: large;
     margin: auto;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: Arial, Helvetica, sans-serif;
 }
+
 .nav_left {
     display: flex;
     justify-content: flex-end;
     padding: auto;
     width: 100%;
     margin-right: 16px;
-    }
- li {
+}
+
+li {
     list-style: none;
-    padding-left: 24px;}
+    padding-left: 24px;
+}
 
 #container {
     font-family: Arial, sans-serif;
@@ -84,14 +95,15 @@ body {
     justify-content: center;
     align-items: center;
 }
-#profiles{
+
+#profiles {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 20px; /* Space between cards */
-    max-width: 1000px; /* Limit width */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1000px;
 }
 
-
+/* Criminal Cards */
 .criminal-card {
     background: white;
     border-radius: 10px;
@@ -126,7 +138,7 @@ body {
     line-height: 1.5;
 }
 
-
+/* Buttons */
 .details-btn {
     display: inline-block;
     background: #d9534f;
@@ -135,21 +147,37 @@ body {
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 30px;
     transition: background 0.3s;
 }
 
 .details-btn:hover {
     background: #c9302c;
 }
-button#load-prev{
-    float:left;
-    
+
+button#load-prev {
+    float: left;
+    justify-content: center;
+    padding: 5px 16px;
+    margin: 20px 30px;
+    border-radius: 10px;
 }
-button#load-more{
-    float:right;
-    
+
+button#load-more {
+    float: right;
+    justify-content: center;
+    padding: 5px 16px;
+    margin: 20px 30px;
+    border-radius: 10px;
 }
+
+button.view-more-btn,
+.fbi-link-btn {
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
 /* Modal Styles */
 #modal {
     display: none;
@@ -173,18 +201,18 @@ button#load-more{
     text-align: center;
 }
 
-.close {
+.close-btn {
     position: absolute;
-    top: 10px;
+    top: 2px;
     right: 15px;
-    font-size: 24px;
+    font-size: 18px;
     cursor: pointer;
 }
 
 #modal-image {
     width: 100%;
-    max-width: 300px;
-    height: auto;
+    max-width: 280px; /* Limiting maximum width */
+    height: auto; /* Maintain aspect ratio */
     display: block;
     margin: 10px auto;
 }
@@ -194,33 +222,109 @@ button#load-more{
     margin-bottom: 10px;
 }
 
-#modal-crime, #modal-description {
+#modal-crime,
+#modal-description {
     font-size: 16px;
     margin-bottom: 10px;
 }
 
+.hidden {
+    display: none;
+}
+
+.report-btn {
+    background-color: #ff4444;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+    display: block;
+    width: 100%;
+}
+
+.report-btn:hover {
+    background-color: #cc0000;
+}
+
+#reportForm {
+    margin-top: 15px;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    background: #f8f8f8;
+}
+
+#reportForm input,
+#reportForm textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 5px 0;
+}
+
+.submit-report-btn {
+    background-color: #28a745;
+    color: white;
+    padding: 8px;
+    border: none;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.submit-report-btn:hover {
+    background-color: #218838;
+}
+
 /* MOBILE RESPONSIVENESS */
-@media  (max-width: 768px) {
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%;
+        max-height: 90vh;
+    }
+
+    .close-btn {
+        font-size: 20px;
+        top: 5px;
+        right: 10px;
+    }
+
+    .fbi-link-btn,
+    .report-btn,
+    .submit-report-btn {
+        font-size: 14px;
+        padding: 8px;
+    }
+
     #profiles {
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        grid-template-columns: 1fr 1fr;
     }
 
     .criminal-card {
-        max-width: 100%;
+        width: 100%;
     }
 
-    #modal-content {
-        width: 95%;
-        max-height: 85vh;
+    /* Fix for button alignment */
+    button#load-prev,
+    button#load-more {
+        margin: 10px 0;
+        width: 100%;
+        float: none;
+    }
+}
+
+/* TABLET RESPONSIVENESS */
+@media (max-width: 900px) {
+    #profiles {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    #modal-image {
-        max-width: 200px;
+    .criminal-card {
+        width: 100%;
     }
 
-    .fbi-link-btn, #load-more {
-        font-size: 14px;
-        padding: 8px 12px;
+    button#load-prev,
+    button#load-more {
+        width: 100%;
     }
 }
 
